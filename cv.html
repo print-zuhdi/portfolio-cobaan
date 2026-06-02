@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV | Ibrahim Zuhdi Shahab</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f5f5f4; }
+        
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        .animate-cv { animation: slideIn 1s ease-out forwards; }
+    </style>
+</head>
+<body class="py-20 px-6">
+    <div class="animate-cv max-w-3xl mx-auto bg-[#fcfaf8] p-12 rounded-3xl shadow-xl border border-[#e7e5e4]">
+        <div class="border-b-2 border-[#8c7851] pb-8 mb-12">
+            <h1 class="text-4xl font-black text-[#44403c] tracking-tight">Curriculum Vitae</h1>
+            <p class="text-[#8c7851] font-bold text-lg mt-2 tracking-widest uppercase">Ibrahim Zuhdi Shahab, S.Ars</p>
+        </div>
+
+        <section class="mb-14">
+            <h2 class="flex items-center gap-3 text-lg font-black text-[#44403c] mb-8 uppercase tracking-widest">
+                <span class="p-2 bg-[#8c7851] text-white rounded-lg"><i data-lucide="graduation-cap" class="w-5 h-5"></i></span> Pendidikan
+            </h2>
+            <div class="border-l-2 border-[#d6d3d1] ml-5 pl-10 space-y-10">
+                <div class="relative">
+                    <div class="absolute -left-[45px] top-1 w-3 h-3 bg-[#8c7851] rounded-full"></div>
+                    <h3 class="font-bold text-xl text-[#44403c]">Institut Teknologi Bandung (ITB)</h3>
+                    <p class="text-[#8c7851] font-bold">Sarjana Arsitektur | 2020 - 2024</p>
+                </div>
+                <div class="relative">
+                    <div class="absolute -left-[45px] top-1 w-3 h-3 bg-[#a8a29e] rounded-full"></div>
+                    <h3 class="font-bold text-xl text-[#44403c]">SMA Negeri 45 Jakarta</h3>
+                    <p class="text-[#78716c]">MIPA | 2017 - 2020</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="flex items-center gap-3 text-lg font-black text-[#44403c] mb-8 uppercase tracking-widest">
+                <span class="p-2 bg-[#57534e] text-white rounded-lg"><i data-lucide="briefcase" class="w-5 h-5"></i></span> Pengalaman
+            </h2>
+            <div class="border-l-2 border-[#d6d3d1] ml-5 pl-10">
+                <div class="relative">
+                    <div class="absolute -left-[45px] top-1 w-3 h-3 bg-[#57534e] rounded-full"></div>
+                    <h3 class="font-bold text-xl text-[#44403c]">Junior Architect</h3>
+                    <p class="text-[#8c7851] font-bold mb-3">Studio Rancang Bangun | 2024 - Sekarang</p>
+                    <p class="text-[#78716c] leading-relaxed">Bertanggung jawab dalam pembuatan konsep hunian dengan palet warna bumi dan visualisasi photorealistic.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+    <script>lucide.createIcons();</script>
+</body>
+</html>
