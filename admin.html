@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meja Redaksi (Admin) - Serpens Aethera</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['Lora', 'serif'],
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+          },
+          colors: {
+            paper: { light: '#FCFBF9', dark: '#F5F2EB' },
+            ink: { DEFAULT: '#1C1917', muted: '#57534E' },
+            editorial: { maroon: '#800020', gold: '#B8860B' }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-paper-dark text-ink font-sans min-h-screen pb-12">
+
+  <!-- HEADER DASHBOARD -->
+  <header class="bg-ink text-white py-6 shadow-lg">
+    <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center space-x-3">
+        <div class="p-2 bg-editorial-maroon rounded text-editorial-gold">
+          <i data-lucide="layout-dashboard" class="w-6 h-6"></i>
+        </div>
+        <div>
+          <h1 class="font-serif font-bold text-xl tracking-tight">Meja Redaksi Serpens Aethera</h1>
+          <p class="text-[10px] sm:text-xs font-semibold text-stone-400 uppercase tracking-widest">Sistem Pengisian Konten Mandiri SMAN 45</p>
+        </div>
+      </div>
+      <a href="index.html" class="flex items-center space-x-1.5 text-xs font-semibold uppercase tracking-wider bg-white/10 hover:bg-white/20 px-4 py-2.5 rounded transition-all">
+        <i data-lucide="eye" class="w-4 h-4"></i>
+        <span>Lihat Web Utama</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- UTAMA -->
+  <main class="max-w-6xl mx-auto px-4 mt-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+    
+    <!-- PANEL INPUT ARTIKEL BARU -->
+    <section class="lg:col-span-7 bg-white p-6 rounded-xl border border-ink/10 shadow-sm space-y-6">
+      <div class="border-b border-ink/10 pb-2">
+        <h2 class="font-serif font-bold text-lg text-editorial-maroon flex items-center gap-2">
+          <i data-lucide="file-text" class="w-5 h-5"></i>
+          <span>Tulis & Terbitkan Artikel Baru</span>
+        </h2>
+      </div>
+
+      <form id="admin-form" onsubmit="simpanArtikel(event)" class="space-y-4">
+        
+        <!-- Judul Berita -->
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-wider text-ink/70 mb-1">Judul Artikel</label>
+          <input type="text" id="post-title" required placeholder="Contoh: Tim Teater SMAN 45 Sabet Juara Umum!" class="w-full px-4 py-2.5 rounded-lg border border-ink/15 text-sm focus:outline-none focus:ring-1 focus:ring-editorial-maroon focus:border-editorial-maroon">
+        </div>
+
+        <div class="grid grid-cols-2 gap-4">
+          <!-- Penulis -->
+          <div>
+            <label class="block text-xs font-bold uppercase tracking-wider text-ink/70 mb-1">Penulis (Koresponden)</label>
+            <input type="text" id="post-author" required placeholder="Nama & Kelas" class="w-full px-4 py-2.5 rounded-lg border border-ink/15 text-sm focus:outline-none focus:ring-1 focus:ring-editorial-maroon focus:border-editorial-maroon">
+          </div>
+          <!-- Kategori -->
+          <div>
+            <label class="block text-xs font-bold uppercase tracking-wider text-ink/70 mb-1">Rubrik Koran</label>
+            <select id="post-category" required class="w-full px-4 py-2.5 rounded-lg border border-ink/15 text-sm bg-white focus:outline-none focus:ring-1 focus:ring-editorial-maroon focus:border-editorial-maroon">
+              <option value="Berita Utama">Berita Utama</option>
+              <option value="Opini Siswa">Opini Siswa</option>
+              <option value="Prestasi 45">Prestasi 45</option>
+              <option value="Pojok Sastra">Pojok Sastra</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Unggah Foto -->
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-wider text-ink/70 mb-1">Unggah Foto Berita</label>
+          <div class="border-2 border-dashed border-ink/15 hover:border-editorial-maroon rounded-lg p-4 text-center cursor-pointer transition-all relative">
+            <input type="file" id="post-image" accept="image/*" required onchange="handlePreviewGambar(event)" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer">
+            <div id="upload-placeholder" class="space-y-1">
+              <i data-lucide="image" class="w-8 h-8 text-ink/40 mx-auto"></i>
+              <p class="text-xs font-semibold text-ink/70">Klik untuk pilih foto artikel</p>
+              <p class="text-[10px] text-ink/40">Rekomendasi ukuran di bawah 1MB</p>
+            </div>
+            <!-- Preview Gambar yang terpilih -->
+            <img id="image-preview" class="hidden max-h-40 mx-auto rounded object-cover shadow border border-ink/10">
+          </div>
+        </div>
+
+        <!-- Ringkasan Berita -->
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-wider text-ink/70 mb-1">Ringkasan (Teaser)</label>
+          <input type="text" id="post-teaser" required placeholder="Gambarkan tulisanmu dalam 1 baris kalimat menarik..." class="w-full px-4 py-2.5 rounded-lg border border-ink/15 text-sm focus:outline-none focus:ring-1 focus:ring-editorial-maroon focus:border-editorial-maroon">
+        </div>
+
+        <!-- Isi Lengkap -->
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-wider text-ink/70 mb-1">Naskah Lengkap Berita</label>
+          <textarea id="post-content" required rows="6" placeholder="Ketik naskah lengkap berita atau karya sastramu di sini..." class="w-full px-4 py-2.5 rounded-lg border border-ink/15 text-sm font-serif focus:outline-none focus:ring-1 focus:ring-editorial-maroon focus:border-editorial-maroon resize-none"></textarea>
+        </div>
+
+        <!-- Pesan Status -->
+        <div id="status-box" class="hidden p-3 rounded-lg text-xs font-bold text-center"></div>
+
+        <button type="submit" class="w-full py-3 bg-editorial-maroon text-white font-bold uppercase tracking-widest text-xs rounded-lg hover:bg-ink transition-all shadow-md">
+          Terbitkan Artikel Ke Website
+        </button>
+      </form>
+    </section>
+
+    <!-- DAFTAR ARTIKEL YANG SUDAH DITERBITKAN -->
+    <section class="lg:col-span-5 bg-white p-6 rounded-xl border border-ink/10 shadow-sm space-y-4">
+      <div class="border-b border-ink/10 pb-2">
+        <h2 class="font-serif font-bold text-lg text-ink flex items-center gap-2">
+          <i data-lucide="folder-kanban" class="w-5 h-5"></i>
+          <span>Kelola Artikel Aktif</span>
+        </h2>
+      </div>
+
+      <!-- List Container -->
+      <div id="post-list" class="space-y-3 max-h-[500px] overflow-y-auto pr-1">
+        <!-- Artikel akan dimuat via JS -->
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    lucide.createIcons();
+
+    // Variable global untuk menampung data gambar hasil konversi Base64
+    let base64GambarData = "";
+
+    // 1. Membaca file gambar lokal dan mengubahnya menjadi Base64 string
+    function handlePreviewGambar(event) {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          base64GambarData = e.target.result; // Menyimpan data Base64
+          
+          // Mengganti tampilan placeholder dengan preview gambar asli
+          const placeholder = document.getElementById('upload-placeholder');
+          const preview = document.getElementById('image-preview');
+          placeholder.classList.add('hidden');
+          preview.classList.remove('hidden');
+          preview.src = base64GambarData;
+        }
+        reader.readAsDataURL(file);
+      }
+    }
+
+    // 2. Mengambil database lokal (localStorage)
+    function ambilDatabase() {
+      const data = localStorage.getItem('serpens_database');
+      return data ? JSON.parse(data) : [];
+    }
+
+    // 3. Menyimpan data artikel baru
+    function simpanArtikel(event) {
+      event.preventDefault();
+
+      const title = document.getElementById('post-title').value;
+      const author = document.getElementById('post-author').value;
+      const category = document.getElementById('post-category').value;
+      const teaser = document.getElementById('post-teaser').value;
+      const content = document.getElementById('post-content').value;
+
+      // Membuat ID unik berdasarkan timestamp waktu saat ini
+      const idUnik = Date.now();
+      
+      // Mengubah format tanggal hari ini secara otomatis
+      const opsiTanggal = { day: 'numeric', month: 'long', year: 'numeric' };
+      const tanggalHariIni = new Date().toLocaleDateString('id-ID', opsiTanggal);
+
+      const artikelBaru = {
+        id: idUnik,
+        judul: title,
+        penulis: author,
+        kategori: category,
+        tanggal: tanggalHariIni,
+        gambar: base64GambarData || "default_sketch", // Fallback sketsa jika tidak ada gambar
+        ringkasan: teaser,
+        isi: content
+      };
+
+      const db = ambilDatabase();
+      db.unshift(artikelBaru); // Memasukkan artikel baru di baris paling atas
+
+      localStorage.setItem('serpens_database', JSON.stringify(db));
+
+      // Menampilkan notifikasi sukses
+      const statusBox = document.getElementById('status-box');
+      statusBox.className = "p-3 rounded-lg text-xs font-bold text-center bg-emerald-100 text-emerald-800 border border-emerald-300";
+      statusBox.innerHTML = "BERHASIL! Artikel kamu sudah mengudara di website utama. 🎉";
+      statusBox.classList.remove('hidden');
+
+      // Reset Form & Preview Gambar
+      setTimeout(() => {
+        document.getElementById('admin-form').reset();
+        document.getElementById('upload-placeholder').classList.remove('hidden');
+        const preview = document.getElementById('image-preview');
+        preview.classList.add('hidden');
+        preview.src = "";
+        base64GambarData = "";
+        statusBox.classList.add('hidden');
+        muatDaftarArtikel();
+      }, 1500);
+    }
+
+    // 4. Memuat list artikel aktif di panel kanan agar bisa dihapus
+    function muatDaftarArtikel() {
+      const listContainer = document.getElementById('post-list');
+      const db = ambilDatabase();
+
+      if (db.length === 0) {
+        listContainer.innerHTML = `
+          <div class="text-center py-8 text-ink/40 text-xs font-semibold">
+            <i data-lucide="clipboard-list" class="w-8 h-8 mx-auto mb-2 opacity-50"></i>
+            Belum ada artikel tambahan yang dibuat.
+          </div>
+        `;
+        lucide.createIcons();
+        return;
+      }
+
+      listContainer.innerHTML = db.map(art => `
+        <div class="border border-ink/10 p-3 rounded-lg flex items-center justify-between gap-3 hover:bg-stone-50 transition-all">
+          <div class="space-y-1">
+            <span class="text-[9px] font-bold uppercase bg-editorial-maroon/10 text-editorial-maroon px-1.5 py-0.5 rounded">${art.kategori}</span>
+            <h4 class="font-bold text-xs text-ink line-clamp-1">${art.judul}</h4>
+            <p class="text-[10px] text-ink/50 font-semibold">Oleh ${art.penulis} | ${art.tanggal}</p>
+          </div>
+          <button onclick="hapusArtikel(${art.id})" class="p-2 text-rose-600 hover:bg-rose-50 rounded-lg transition-all" title="Hapus Artikel">
+            <i data-lucide="trash-2" class="w-4 h-4"></i>
+          </button>
+        </div>
+      `).join('');
+
+      lucide.createIcons();
+    }
+
+    // 5. Fungsi menghapus artikel
+    function hapusArtikel(id) {
+      if (confirm("Apakah kamu yakin ingin menghapus artikel ini dari situs Serpens Aethera?")) {
+        let db = ambilDatabase();
+        db = db.filter(art => art.id !== id);
+        localStorage.setItem('serpens_database', JSON.stringify(db));
+        muatDaftarArtikel();
+      }
+    }
+
+    // Jalankan daftar artikel saat pertama kali admin.html dibuka
+    muatDaftarArtikel();
+  </script>
+</body>
+</html>
