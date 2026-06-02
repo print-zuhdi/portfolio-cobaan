@@ -8,16 +8,15 @@
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   
-  <!-- Google Fonts - Lora untuk judul khas koran/editorial, Plus Jakarta Sans untuk teks tubuh -->
+  <!-- Google Fonts: Lora (Koran Klasik) & Plus Jakarta Sans (Modern & Bersih) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   
-  <!-- Lucide Icons untuk tombol-tombol interaktif -->
+  <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
   
   <script>
-    // Konfigurasi tema koran klasik (Paper, Ink, and Editorial Crimson)
     tailwind.config = {
       theme: {
         extend: {
@@ -26,12 +25,17 @@
             sans: ['Plus Jakarta Sans', 'sans-serif'],
           },
           colors: {
+            paper: {
+              light: '#FCFBF9', // Warm Paper
+              dark: '#F5F2EB',  
+            },
+            ink: {
+              DEFAULT: '#1C1917', // Stone 900
+              muted: '#57534E',   // Stone 600
+            },
             editorial: {
-              paper: '#FAF8F5',       // Warna putih hangat mirip kertas koran premium
-              ink: '#1C1917',         // Hitam arang (Stone 900) agar mata tidak lelah membaca
-              crimson: '#800020',     // Merah Burgundy/Marun khas majalah jurnalistik prestisius
-              gold: '#B8860B',        // Emas gelap untuk detail elegan
-              border: '#E7E2DB'       // Pembatas tipis estetik abu kekuningan
+              maroon: '#800020',  // Merah Burgundy
+              gold: '#B8860B',    // Emas Gelap
             }
           }
         }
@@ -40,10 +44,16 @@
   </script>
 
   <style>
-    /* Efek dropcap koran klasik */
+    .border-double-y {
+      border-top: 4px double #1C1917;
+      border-bottom: 4px double #1C1917;
+    }
+    .border-double-b {
+      border-bottom: 4px double #1C1917;
+    }
     .dropcap::first-letter {
-      float: left;
       font-family: 'Lora', serif;
+      float: left;
       font-size: 4rem;
       line-height: 3rem;
       padding-top: 4px;
@@ -51,664 +61,308 @@
       font-weight: bold;
       color: #800020;
     }
-    /* Pembatas garis ganda khas koran cetak */
-    .border-double-bottom {
-      border-bottom: 4px double #1C1917;
-    }
-    .border-double-y {
-      border-top: 4px double #1C1917;
-      border-bottom: 4px double #1C1917;
-    }
   </style>
 </head>
-<body class="bg-editorial-paper text-editorial-ink font-sans min-h-screen flex flex-col selection:bg-editorial-crimson selection:text-white">
+<body class="bg-paper-light text-ink font-sans min-h-screen flex flex-col selection:bg-editorial-maroon/20 selection:text-editorial-maroon">
 
   <!-- ==================== 1. MASTHEAD & NAVIGASI UTAMA ==================== -->
-  <header class="bg-editorial-paper border-b border-editorial-border sticky top-0 z-50 backdrop-blur-md bg-opacity-95">
-    <!-- Baris Atas: Info Edisi & Tanggal -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 text-xs font-semibold uppercase tracking-widest text-neutral-500 flex justify-between border-b border-editorial-border">
-      <span class="flex items-center"><i data-lucide="globe" class="w-3.5 h-3.5 mr-1.5 text-editorial-crimson"></i> Edisi Digital SMAN 45 Jakarta</span>
-      <span class="hidden sm:inline">Volume I, No. 045</span>
-      <span class="flex items-center"><i data-lucide="calendar" class="w-3.5 h-3.5 mr-1.5"></i> <span id="current-date">Selasa, 2 Juni 2026</span></span>
+  <header class="bg-paper-light border-b border-ink/10 sticky top-0 z-40 shadow-sm backdrop-blur-md bg-opacity-95">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 text-xs font-semibold uppercase tracking-widest text-ink/60 flex justify-between border-b border-ink/10">
+      <span class="flex items-center"><i data-lucide="globe" class="w-3.5 h-3.5 mr-1.5 text-editorial-maroon"></i> EDISI DIGITAL SMAN 45 JAKARTA</span>
+      <span class="hidden sm:inline">VOLUME I, NOMOR 045</span>
+      <span class="flex items-center"><i data-lucide="calendar" class="w-3.5 h-3.5 mr-1.5"></i> Selasa, 2 Juni 2026</span>
     </div>
 
-    <!-- Baris Tengah: Nama Surat Kabar Besar (Masthead) -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 flex flex-col md:flex-row items-center justify-between gap-4">
-      <div class="hidden md:block w-40 text-left">
-        <span class="text-xs font-bold uppercase tracking-widest text-neutral-500 block">Motto Literasi</span>
-        <span class="text-xs italic font-serif text-editorial-crimson">"Suara Kebenaran, Pena Cakrawala"</span>
+    <!-- Judul Raksasa Surat Kabar (Masthead) -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="hidden md:block w-48 text-left">
+        <span class="text-xs font-bold uppercase tracking-wider text-ink/50 block">Misi Literasi</span>
+        <span class="text-xs italic font-serif text-editorial-maroon">"Suara Kebenaran, Pena Cakrawala"</span>
       </div>
       
-      <!-- LOGO UTAMA: SERPENS AETHERA -->
-      <div class="text-center cursor-pointer" onclick="filterKategori('Semua')">
-        <h1 class="font-serif font-black text-4xl sm:text-5xl lg:text-6xl tracking-tight text-editorial-ink lowercase hover:text-editorial-crimson transition-colors">
+      <a href="index.html" class="text-center">
+        <h1 class="font-serif font-black text-4xl sm:text-5xl lg:text-6xl tracking-tight text-ink lowercase hover:text-editorial-maroon transition-colors duration-300">
           serpens aethera
         </h1>
-        <p class="text-xs font-bold tracking-[0.35em] uppercase text-editorial-crimson mt-1">Portal Jurnalistik & Literasi Independen</p>
-      </div>
+        <p class="text-[10px] sm:text-xs font-bold tracking-[0.3em] uppercase text-editorial-maroon mt-1.5">Portal Jurnalistik & Sastra Independen SMAN 45</p>
+      </a>
 
-      <!-- Tombol Kirim Karya / Menu Mobile -->
-      <div class="flex items-center space-x-3 w-full md:w-40 justify-center md:justify-end">
-        <button onclick="bukaModal()" class="flex items-center space-x-2 bg-editorial-ink hover:bg-editorial-crimson text-white font-serif font-semibold py-2 px-4 rounded border border-editorial-ink transition-all text-xs tracking-wider uppercase">
-          <i data-lucide="quill" class="w-4 h-4"></i>
+      <div class="flex items-center space-x-3 w-full md:w-48 justify-center md:justify-end">
+        <button onclick="bukaModal()" class="flex items-center space-x-2 bg-ink hover:bg-editorial-maroon text-white font-serif font-bold py-2.5 px-4 rounded border border-ink transition-all text-xs tracking-wider uppercase shadow-md hover:scale-[1.02] active:scale-95">
+          <i data-lucide="quill" class="w-4 h-4 text-editorial-gold"></i>
           <span>Kirim Opini/Sastra</span>
         </button>
-        <!-- Burger Menu (Mobile Only) -->
-        <button onclick="toggleMobileMenu()" class="p-2 text-editorial-ink hover:text-editorial-crimson md:hidden" aria-label="Menu">
+        <button onclick="toggleMobileMenu()" class="p-2 text-ink hover:text-editorial-maroon md:hidden" aria-label="Menu">
           <i data-lucide="menu" id="menu-icon" class="w-6 h-6"></i>
         </button>
       </div>
     </div>
 
-    <!-- Baris Bawah: Navigasi Kategori (Gaya Pembatas Garis Ganda Koran) -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 border-double-y bg-editorial-paper hidden md:block">
-      <nav class="flex justify-center space-x-1 lg:space-x-4">
-        <button onclick="filterKategori('Semua')" class="category-btn active px-4 py-1.5 font-serif font-bold text-sm tracking-wide transition-all duration-150 text-editorial-crimson border-b-2 border-editorial-crimson">Semua Halaman</button>
-        <button onclick="filterKategori('Berita Utama')" class="category-btn px-4 py-1.5 font-serif font-medium text-sm tracking-wide text-neutral-600 hover:text-editorial-crimson hover:border-b-2 hover:border-editorial-crimson transition-all duration-150">Berita Utama</button>
-        <button onclick="filterKategori('Opini Siswa')" class="category-btn px-4 py-1.5 font-serif font-medium text-sm tracking-wide text-neutral-600 hover:text-editorial-crimson hover:border-b-2 hover:border-editorial-crimson transition-all duration-150">Opini Siswa</button>
-        <button onclick="filterKategori('Prestasi 45')" class="category-btn px-4 py-1.5 font-serif font-medium text-sm tracking-wide text-neutral-600 hover:text-editorial-crimson hover:border-b-2 hover:border-editorial-crimson transition-all duration-150">Prestasi 45</button>
-        <button onclick="filterKategori('Pojok Sastra')" class="category-btn px-4 py-1.5 font-serif font-medium text-sm tracking-wide text-neutral-600 hover:text-editorial-crimson hover:border-b-2 hover:border-editorial-crimson transition-all duration-150">Pojok Sastra</button>
+    <!-- Navigasi Utama Kategori (Gaya Garis Ganda Klasik) -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 border-double-y bg-paper-light hidden md:block">
+      <nav class="flex justify-center space-x-2 lg:space-x-6">
+        <a href="index.html" class="font-serif font-bold text-sm tracking-wide px-4 py-1.5 rounded transition-all text-editorial-maroon bg-editorial-maroon/5">Beranda</a>
+        <a href="berita.html" class="font-serif font-semibold text-sm tracking-wide px-4 py-1.5 rounded transition-all text-ink/75 hover:text-editorial-maroon hover:bg-ink/5">Berita Utama</a>
+        <a href="opini.html" class="font-serif font-semibold text-sm tracking-wide px-4 py-1.5 rounded transition-all text-ink/75 hover:text-editorial-maroon hover:bg-ink/5">Opini Siswa</a>
+        <a href="prestasi.html" class="font-serif font-semibold text-sm tracking-wide px-4 py-1.5 rounded transition-all text-ink/75 hover:text-editorial-maroon hover:bg-ink/5">Prestasi 45</a>
+        <a href="sastra.html" class="font-serif font-semibold text-sm tracking-wide px-4 py-1.5 rounded transition-all text-ink/75 hover:text-editorial-maroon hover:bg-ink/5">Pojok Sastra</a>
       </nav>
     </div>
 
     <!-- Dropdown Menu Mobile -->
-    <div id="mobile-menu" class="hidden md:hidden bg-editorial-paper border-t border-editorial-border px-4 py-3 space-y-1">
-      <button onclick="filterKategori('Semua'); toggleMobileMenu()" class="w-full text-left py-2 font-serif font-bold text-editorial-crimson border-b border-editorial-border block">Semua Halaman</button>
-      <button onclick="filterKategori('Berita Utama'); toggleMobileMenu()" class="w-full text-left py-2 font-serif text-neutral-700 hover:text-editorial-crimson block border-b border-editorial-border">Berita Utama</button>
-      <button onclick="filterKategori('Opini Siswa'); toggleMobileMenu()" class="w-full text-left py-2 font-serif text-neutral-700 hover:text-editorial-crimson block border-b border-editorial-border">Opini Siswa</button>
-      <button onclick="filterKategori('Prestasi 45'); toggleMobileMenu()" class="w-full text-left py-2 font-serif text-neutral-700 hover:text-editorial-crimson block border-b border-editorial-border">Prestasi 45</button>
-      <button onclick="filterKategori('Pojok Sastra'); toggleMobileMenu()" class="w-full text-left py-2 font-serif text-neutral-700 hover:text-editorial-crimson block border-b border-editorial-border">Pojok Sastra</button>
+    <div id="mobile-menu" class="hidden md:hidden bg-paper-dark border-t border-ink/10 px-4 py-3 space-y-1">
+      <a href="index.html" class="w-full text-left py-2.5 font-serif font-bold text-editorial-maroon block border-b border-ink/5">Beranda</a>
+      <a href="berita.html" class="w-full text-left py-2.5 font-serif font-bold text-ink/85 block border-b border-ink/5">Berita Utama</a>
+      <a href="opini.html" class="w-full text-left py-2.5 font-serif font-bold text-ink/85 block border-b border-ink/5">Opini Siswa</a>
+      <a href="prestasi.html" class="w-full text-left py-2.5 font-serif font-bold text-ink/85 block border-b border-ink/5">Prestasi 45</a>
+      <a href="sastra.html" class="w-full text-left py-2.5 font-serif font-bold text-ink/85 block">Pojok Sastra</a>
     </div>
   </header>
 
-  <!-- ==================== MAIN CONTENT ==================== -->
+  <!-- ==================== UTAMA ==================== -->
   <main class="flex-grow">
-
-    <!-- ==================== 2. FRONT PAGE / HERO SECTION ==================== -->
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 border-b border-editorial-border">
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-12">
+      
+      <!-- Headline & Catatan Samping -->
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         
-        <!-- Artikel Utama Kiri (Headline Raksasa) -->
-        <div class="lg:col-span-8 lg:border-r lg:border-editorial-border lg:pr-8 space-y-6">
-          <div class="flex items-center space-x-2 text-editorial-crimson font-serif font-bold text-xs uppercase tracking-widest">
-            <span>[ Laporan Utama Hari Ini ]</span>
-            <span class="w-1.5 h-1.5 rounded-full bg-editorial-crimson"></span>
-            <span>Investigasi & Prestasi</span>
+        <!-- Headline Utama -->
+        <div class="lg:col-span-8 lg:border-r lg:border-ink/10 lg:pr-8 space-y-6">
+          <div class="flex items-center space-x-2 text-editorial-maroon font-serif font-bold text-xs uppercase tracking-widest">
+            <span>[ LAPORAN UTAMA HARI INI ]</span>
+            <span class="w-1.5 h-1.5 rounded-full bg-editorial-maroon"></span>
+            <span>OSN KEBANGGAAN</span>
           </div>
           
-          <!-- Judul Raksasa Lora Serif khas Headline Cetak -->
-          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-black leading-tight tracking-tight text-editorial-ink hover:text-editorial-crimson cursor-pointer" onclick="bukaBeritaHeadline()">
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-black leading-tight tracking-tight text-ink hover:text-editorial-maroon cursor-pointer transition-colors" onclick="bukaBerita('Siswa SMAN 45 Boyong Medali Emas Olimpiade Sains Nasional 2026!', 'Prestasi 45', '2 Juni 2026', 'Tim Investigator Serpens Aethera', 'Satu piala emas berhasil dipulangkan ke almamater SMAN 45.')">
             Siswa SMAN 45 Boyong Medali Emas Olimpiade Sains Nasional 2026!
           </h1>
           
-          <!-- Metadata Editorial -->
-          <div class="flex flex-wrap items-center gap-4 text-xs font-semibold uppercase tracking-wider text-neutral-500 py-2 border-y border-dashed border-editorial-border">
+          <div class="flex flex-wrap items-center gap-4 text-xs font-semibold uppercase tracking-wider text-ink/60 py-2 border-y border-dashed border-ink/20">
             <span>Oleh Tim Investigator Serpens Aethera</span>
             <span class="hidden sm:inline">|</span>
-            <span>Editor: Redaksi Seni & Sains</span>
+            <span>Kategori: Prestasi & Sains</span>
             <span class="hidden sm:inline">|</span>
             <span>2 Juni 2026</span>
           </div>
 
-          <!-- Cuplikan Paragraf Berita dengan Dropcap Khas Koran -->
-          <p class="dropcap text-neutral-700 font-serif text-base sm:text-lg leading-relaxed text-justify">
-            Satu piala emas berhasil dipulangkan ke almamater tercinta. Lewat laga ketat sains nasional, tim SMAN 45 Jakarta menorehkan prestasi gemilang yang menjadi catatan emas di tahun ajaran ini. Tidak hanya menjadi ajang unjuk gigi teori abstrak, inovasi ramah lingkungan yang dipresentasikan oleh perwakilan sekolah berhasil menyihir para dewan juri universitas ternama nasional.
+          <p class="dropcap text-ink/80 font-serif text-base sm:text-lg leading-relaxed text-justify">
+            Satu piala emas berhasil dipulangkan ke almamater tercinta SMAN 45 Jakarta. Lewat laga ketat sains nasional tingkat tinggi, tim peneliti muda kita menorehkan prestasi gemilang yang menjadi catatan emas di tahun ajaran ini. Tidak hanya menjadi ajang unjuk gigi teori abstrak, inovasi ramah lingkungan yang dipresentasikan oleh perwakilan sekolah berhasil menyihir para dewan juri universitas ternama nasional.
           </p>
 
-          <p class="text-neutral-600 font-sans text-sm leading-relaxed text-justify">
-            Kerja keras berbulan-bulan di bawah bimbingan guru sains sekolah melahirkan riset aplikatif bernilai tinggi. Kemenangan ini sekaligus mematahkan dominasi sekolah-sekolah swasta besar regional. "Ini adalah awal dari perjalanan panjang kami menuju masa depan riset yang lebih inklusif," tegas ketua tim dalam pidato kemenangannya...
+          <p class="text-ink/75 font-sans text-sm leading-relaxed text-justify">
+            Kerja keras berbulan-bulan di bawah bimbingan guru sains sekolah melahirkan riset aplikatif bernilai guna tinggi. Kemenangan ini sekaligus mematahkan dominasi sekolah-sekolah swasta besar regional...
           </p>
 
           <div>
-            <button onclick="bukaBeritaHeadline()" class="font-serif font-bold text-sm text-editorial-crimson hover:text-editorial-ink underline underline-offset-4 decoration-2 inline-flex items-center space-x-1.5">
-              <span>Lanjutkan Membaca Berita Utama</span>
+            <a href="prestasi.html" class="font-serif font-bold text-sm text-editorial-maroon hover:text-ink underline underline-offset-4 decoration-2 inline-flex items-center space-x-1.5 transition-all">
+              <span>Buka Halaman Prestasi SMAN 45</span>
               <i data-lucide="arrow-right-circle" class="w-4 h-4"></i>
-            </button>
+            </a>
           </div>
         </div>
 
-        <!-- Kolom Samping Kanan (Editorial Highlight / Opini Editor) -->
+        <!-- Kolom Kanan Samping: Sorotan Editorial -->
         <div class="lg:col-span-4 space-y-6">
-          <div class="bg-stone-100 p-6 rounded border border-editorial-border">
-            <h3 class="font-serif font-bold text-lg text-editorial-crimson border-b border-editorial-border pb-2 mb-4 tracking-tight">Catatan Redaksi</h3>
+          <div class="bg-paper-dark p-6 rounded border border-ink/10">
+            <h3 class="font-serif font-bold text-lg text-editorial-maroon border-b border-ink/20 pb-2 mb-4 tracking-tight">Catatan Redaksi</h3>
             <div class="space-y-4">
               <div>
-                <span class="text-[10px] font-bold uppercase tracking-wider text-neutral-500 block">Editorial - Opini Utama</span>
-                <a href="#" class="font-serif font-bold text-sm hover:text-editorial-crimson leading-snug block mt-1">Menggugat Budaya Menghafal: Mengapa Literasi Kritis Lebih Esensial daripada Sekadar Nilai Rapor?</a>
-                <p class="text-xs text-neutral-600 font-serif mt-1 italic">"Kita perlu melatih otak siswa untuk bertanya 'Mengapa?', bukan sekadar menjawab 'Apa'."</p>
+                <span class="text-[10px] font-bold uppercase tracking-wider text-ink/40 block">Opini Terhangat</span>
+                <a href="opini.html" class="font-serif font-bold text-sm hover:text-editorial-maroon leading-snug block mt-1">Menggugat Budaya Menghafal: Mengapa Literasi Kritis Lebih Esensial daripada Rapor?</a>
               </div>
-              <hr class="border-dashed border-editorial-border">
+              <hr class="border-dashed border-ink/20">
               <div>
-                <span class="text-[10px] font-bold uppercase tracking-wider text-neutral-500 block">Info Rapat Redaktur</span>
-                <p class="text-xs text-neutral-600 font-sans mt-1">Serpens Aethera membuka pendaftaran kontributor naskah cerpen dan puisi baru untuk edisi cetak fisik bulan depan. Kumpulkan segera karya terbaikmu!</p>
+                <span class="text-[10px] font-bold uppercase tracking-wider text-ink/40 block">Info Rapat Redaktur</span>
+                <p class="text-xs text-ink/70 font-sans mt-1">Serpens Aethera membuka pendaftaran kontributor naskah cerpen dan puisi baru untuk edisi fisik bulan depan.</p>
               </div>
             </div>
           </div>
 
-          <!-- Sketsa Ilustrasi Khas Koran Cetak -->
-          <div class="border border-editorial-border p-3 rounded bg-white">
-            <svg class="w-full h-40 bg-stone-50 text-neutral-300" viewBox="0 0 300 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <div class="border border-ink/10 p-3 rounded bg-white">
+            <svg class="w-full h-40 bg-paper-dark text-ink" viewBox="0 0 300 150" fill="none" xmlns="http://www.w3.org/2000/svg">
               <rect width="100%" height="100%" fill="#FCFBF9"/>
               <path d="M40 120 C 100 20, 200 130, 260 40" stroke="#1C1917" stroke-width="2" stroke-linecap="round"/>
               <circle cx="260" cy="40" r="4" fill="#800020"/>
-              <text x="50%" y="135" fill="#78716c" font-family="Lora, serif" font-size="10" font-style="italic" text-anchor="middle">Sketsa Ink: "Kurva Kebangkitan Literasi Sekolah"</text>
+              <text x="50%" y="135" fill="#57534e" font-family="Lora, serif" font-size="10" font-style="italic" text-anchor="middle">Sketsa Ink: "Kurva Kebangkitan Literasi Sekolah"</text>
             </svg>
           </div>
         </div>
 
       </div>
-    </section>
 
-    <!-- ==================== 3. GRID ARTIKEL KOLOM KORAN ==================== -->
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <!-- Header Section Koran -->
-      <div class="border-double-bottom pb-3 mb-8 flex flex-col sm:flex-row items-baseline justify-between gap-2">
-        <h2 class="font-serif font-black text-2xl sm:text-3xl text-editorial-ink tracking-tight uppercase">
-          Kliping Berita & Karya Siswa: <span id="nama-filter" class="text-editorial-crimson">Semua Kategori</span>
-        </h2>
-        <span class="text-xs font-bold uppercase tracking-widest text-neutral-500">Lembaran Opini, Cerita, dan Laporan</span>
-      </div>
-
-      <!-- Grid Column: Styled like tight newspaper stories -->
-      <div id="grid-artikel" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 divide-y md:divide-y-0 md:gap-x-8 md:gap-y-12">
+      <!-- Cuplikan Grid Artikel Campuran -->
+      <div class="space-y-6 pt-6">
+        <div class="border-double-b pb-2">
+          <h2 class="font-serif font-bold text-xl sm:text-2xl text-ink uppercase tracking-tight">Kliping Edisi Terbaru</h2>
+        </div>
         
-        <!-- Artikel 1: Berita Utama -->
-        <article class="card-artikel bg-editorial-paper pt-6 md:pt-0 flex flex-col justify-between h-full" data-category="Berita Utama">
-          <div class="space-y-3">
-            <div class="flex items-center justify-between text-[11px] font-bold uppercase tracking-wider text-neutral-500">
-              <span class="text-blue-800">[ Berita Utama ]</span>
-              <span>1 Juni 2026</span>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="space-y-3 flex flex-col justify-between border-b md:border-b-0 pb-6 md:pb-0">
+            <div class="space-y-2">
+              <span class="text-[10px] font-bold text-blue-800 uppercase tracking-wider">[ BERITA UTAMA ]</span>
+              <h3 class="font-serif font-bold text-lg text-ink hover:text-editorial-maroon cursor-pointer" onclick="bukaBerita('Revitalisasi Perpustakaan SMAN 45 Selesai: Lebih Nyaman & Serba Digital', 'Berita Utama', '1 Juni 2026', 'Melati Suci (XI-A)', 'Gedung baru perpustakaan akhirnya resmi dibuka kemarin.')">Revitalisasi Perpustakaan SMAN 45 Selesai: Lebih Nyaman & Serba Digital</h3>
             </div>
-            <!-- Sketsa ilustrasi yang disederhanakan ala koran -->
-            <div class="relative h-44 bg-stone-100 border border-editorial-border overflow-hidden rounded">
-              <svg class="w-full h-full text-stone-400" viewBox="0 0 300 180" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect width="100%" height="100%" fill="#FCFBF9"/>
-                <path d="M20 90 L80 90 M80 50 L220 50 L220 130 L80 130 Z" stroke="#1C1917" stroke-width="1.5"/>
-                <line x1="95" y1="70" x2="205" y2="70" stroke="#1C1917" stroke-width="1.5"/>
-                <line x1="95" y1="90" x2="185" y2="90" stroke="#1C1917" stroke-width="1.5"/>
-                <line x1="95" y1="110" x2="205" y2="110" stroke="#1C1917" stroke-width="1.5"/>
-                <text x="50%" y="155" fill="#78716c" font-family="Lora" font-size="10" text-anchor="middle">Arsip Cetak: Digitalisasi Perpustakaan</text>
-              </svg>
+            <a href="berita.html" class="text-xs font-bold text-editorial-maroon hover:underline mt-3">Buka Rubrik Berita &rarr;</a>
+          </div>
+          
+          <div class="space-y-3 flex flex-col justify-between border-b md:border-b-0 pb-6 md:pb-0">
+            <div class="space-y-2">
+              <span class="text-[10px] font-bold text-amber-800 uppercase tracking-wider">[ OPINI SISWA ]</span>
+              <h3 class="font-serif font-bold text-lg text-ink hover:text-editorial-maroon cursor-pointer" onclick="bukaBerita('AI di Sekolah: Apakah Kawan Baik atau Justru Mengurangi Kreativitas?', 'Opini Siswa', '30 Mei 2026', 'Raka Wijaya (XII-F)', 'Kemajuan AI tidak bisa kita kesampingkan.')">AI di Sekolah: Apakah Kawan Baik atau Justru Mengurangi Kreativitas?</h3>
             </div>
-            <h3 class="font-serif font-bold text-lg leading-snug text-editorial-ink hover:text-editorial-crimson transition-colors cursor-pointer">
-              Revitalisasi Perpustakaan SMAN 45 Selesai: Kini Lebih Nyaman & Serba Digital!
-            </h3>
-            <p class="text-neutral-600 font-serif text-sm leading-relaxed line-clamp-3 text-justify">
-              Wajah baru perpustakaan kita akhirnya diresmikan kemarin. Lengkap dengan area baca lesehan yang luas, akses komputer cepat, dan ribuan e-book baru siap kamu nikmati!
-            </p>
+            <a href="opini.html" class="text-xs font-bold text-editorial-maroon hover:underline mt-3">Buka Rubrik Opini &rarr;</a>
           </div>
-          <div class="pt-4 border-t border-dashed border-editorial-border mt-4 flex items-center justify-between text-xs font-semibold">
-            <span class="text-neutral-600 font-serif">Melati Suci (XI-A)</span>
-            <span class="text-editorial-crimson cursor-pointer hover:underline">Baca Arsip</span>
-          </div>
-        </article>
 
-        <!-- Artikel 2: Opini Siswa -->
-        <article class="card-artikel bg-editorial-paper pt-6 md:pt-0 flex flex-col justify-between h-full" data-category="Opini Siswa">
-          <div class="space-y-3">
-            <div class="flex items-center justify-between text-[11px] font-bold uppercase tracking-wider text-neutral-500">
-              <span class="text-amber-800">[ Opini Siswa ]</span>
-              <span>30 Mei 2026</span>
+          <div class="space-y-3 flex flex-col justify-between">
+            <div class="space-y-2">
+              <span class="text-[10px] font-bold text-purple-800 uppercase tracking-wider">[ POJOK SASTRA ]</span>
+              <h3 class="font-serif font-bold text-lg text-ink hover:text-editorial-maroon cursor-pointer" onclick="bukaBerita('Lentera di Balik Kabut Sekolah', 'Pojok Sastra', '25 Mei 2026', 'Anindya Putri (X-D)', 'Sajak-sajak hangat di masa sekolah.')">Lentera di Balik Kabut Sekolah (Sebuah Cerpen Singkat)</h3>
             </div>
-            <!-- Sketsa ilustrasi yang disederhanakan ala koran -->
-            <div class="relative h-44 bg-stone-100 border border-editorial-border overflow-hidden rounded">
-              <svg class="w-full h-full text-stone-400" viewBox="0 0 300 180" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect width="100%" height="100%" fill="#FCFBF9"/>
-                <path d="M150 40 L110 110 L190 110 Z" stroke="#1C1917" stroke-width="1.5" fill="none"/>
-                <circle cx="150" cy="80" r="15" stroke="#1C1917" stroke-width="1.5"/>
-                <text x="50%" y="155" fill="#78716c" font-family="Lora" font-size="10" text-anchor="middle">Arsip Cetak: Analisis Kecerdasan Buatan</text>
-              </svg>
-            </div>
-            <h3 class="font-serif font-bold text-lg leading-snug text-editorial-ink hover:text-editorial-crimson transition-colors cursor-pointer">
-              AI di Sekolah: Apakah Kawan Baik atau Justru Mengurangi Kreativitas?
-            </h3>
-            <p class="text-neutral-600 font-serif text-sm leading-relaxed line-clamp-3 text-justify">
-              Teknologi AI berkembang super cepat, tak terkecuali di ruang kelas kita. Ini ulasan jujur dari sudut pandang siswa tentang bagaimana kita menyikapi AI dengan bijak.
-            </p>
+            <a href="sastra.html" class="text-xs font-bold text-editorial-maroon hover:underline mt-3">Buka Pojok Sastra &rarr;</a>
           </div>
-          <div class="pt-4 border-t border-dashed border-editorial-border mt-4 flex items-center justify-between text-xs font-semibold">
-            <span class="text-neutral-600 font-serif">Raka Wijaya (XII-F)</span>
-            <span class="text-editorial-crimson cursor-pointer hover:underline">Baca Arsip</span>
-          </div>
-        </article>
-
-        <!-- Artikel 3: Prestasi 45 -->
-        <article class="card-artikel bg-editorial-paper pt-6 md:pt-0 flex flex-col justify-between h-full" data-category="Prestasi 45">
-          <div class="space-y-3">
-            <div class="flex items-center justify-between text-[11px] font-bold uppercase tracking-wider text-neutral-500">
-              <span class="text-emerald-800">[ Prestasi 45 ]</span>
-              <span>28 Mei 2026</span>
-            </div>
-            <!-- Sketsa ilustrasi yang disederhanakan ala koran -->
-            <div class="relative h-44 bg-stone-100 border border-editorial-border overflow-hidden rounded">
-              <svg class="w-full h-full text-stone-400" viewBox="0 0 300 180" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect width="100%" height="100%" fill="#FCFBF9"/>
-                <path d="M110 50 L190 50 L170 120 L130 120 Z" stroke="#1C1917" stroke-width="1.5"/>
-                <line x1="150" y1="120" x2="150" y2="140" stroke="#1C1917" stroke-width="1.5"/>
-                <line x1="130" y1="140" x2="170" y2="140" stroke="#1C1917" stroke-width="1.5"/>
-                <text x="50%" y="160" fill="#78716c" font-family="Lora" font-size="10" text-anchor="middle">Arsip Cetak: Piala Wali Kota Cup</text>
-              </svg>
-            </div>
-            <h3 class="font-serif font-bold text-lg leading-snug text-editorial-ink hover:text-editorial-crimson transition-colors cursor-pointer">
-              Tim Basket SMAN 45 Juara 1 Turnamen Wali Kota Cup Se-DKI Jakarta!
-            </h3>
-            <p class="text-neutral-600 font-serif text-sm leading-relaxed line-clamp-3 text-justify">
-              Setelah melalui laga final yang sangat menegangkan, tim basket kebanggaan kita berhasil menumbangkan lawan sengit di detik-detik terakhir! Simak keseruan pertandingannya.
-            </p>
-          </div>
-          <div class="pt-4 border-t border-dashed border-editorial-border mt-4 flex items-center justify-between text-xs font-semibold">
-            <span class="text-neutral-600 font-serif">Dika Pratama (XI-B)</span>
-            <span class="text-editorial-crimson cursor-pointer hover:underline">Baca Arsip</span>
-          </div>
-        </article>
-
-        <!-- Artikel 4: Pojok Sastra -->
-        <article class="card-artikel bg-editorial-paper pt-6 md:pt-0 flex flex-col justify-between h-full" data-category="Pojok Sastra">
-          <div class="space-y-3">
-            <div class="flex items-center justify-between text-[11px] font-bold uppercase tracking-wider text-neutral-500">
-              <span class="text-purple-800">[ Pojok Sastra ]</span>
-              <span>25 Mei 2026</span>
-            </div>
-            <!-- Sketsa ilustrasi yang disederhanakan ala koran -->
-            <div class="relative h-44 bg-stone-100 border border-editorial-border overflow-hidden rounded">
-              <svg class="w-full h-full text-stone-400" viewBox="0 0 300 180" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect width="100%" height="100%" fill="#FCFBF9"/>
-                <path d="M100 50 C120 20, 180 20, 200 50 C180 80, 120 80, 100 50 Z" stroke="#1C1917" stroke-width="1.5" fill="none"/>
-                <path d="M150 50 L150 130" stroke="#1C1917" stroke-width="1.5"/>
-                <text x="50%" y="155" fill="#78716c" font-family="Lora" font-size="10" text-anchor="middle">Arsip Cetak: Lembaran Sastra Cerpen</text>
-              </svg>
-            </div>
-            <h3 class="font-serif font-bold text-lg leading-snug text-editorial-ink hover:text-editorial-crimson transition-colors cursor-pointer">
-              Lentera di Balik Kabut Sekolah (Sebuah Cerpen Singkat)
-            </h3>
-            <p class="text-neutral-600 font-serif text-sm leading-relaxed line-clamp-3 text-justify">
-              "Setiap sudut sekolah punya kisahnya sendiri, tapi bangku tua di taman belakang itu menyimpan rahasia terbesar kita..." Baca petualangan seru persahabatan anak SMAN 45.
-            </p>
-          </div>
-          <div class="pt-4 border-t border-dashed border-editorial-border mt-4 flex items-center justify-between text-xs font-semibold">
-            <span class="text-neutral-600 font-serif">Anindya Putri (X-D)</span>
-            <span class="text-editorial-crimson cursor-pointer hover:underline">Baca Arsip</span>
-          </div>
-        </article>
-
-        <!-- Artikel 5: Pojok Sastra (Puisi) -->
-        <article class="card-artikel bg-editorial-paper pt-6 md:pt-0 flex flex-col justify-between h-full" data-category="Pojok Sastra">
-          <div class="space-y-3">
-            <div class="flex items-center justify-between text-[11px] font-bold uppercase tracking-wider text-neutral-500">
-              <span class="text-purple-800">[ Pojok Sastra ]</span>
-              <span>23 Mei 2026</span>
-            </div>
-            <!-- Sketsa ilustrasi yang disederhanakan ala koran -->
-            <div class="relative h-44 bg-stone-100 border border-editorial-border overflow-hidden rounded">
-              <svg class="w-full h-full text-stone-400" viewBox="0 0 300 180" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect width="100%" height="100%" fill="#FCFBF9"/>
-                <path d="M110 40 L190 40 M110 60 L190 60 M110 80 L190 80 M110 100 L190 100" stroke="#1C1917" stroke-width="1.5"/>
-                <path d="M110 120 L150 120" stroke="#1C1917" stroke-width="1.5"/>
-                <text x="50%" y="155" fill="#78716c" font-family="Lora" font-size="10" text-anchor="middle">Arsip Cetak: Lembaran Puisi</text>
-              </svg>
-            </div>
-            <h3 class="font-serif font-bold text-lg leading-snug text-editorial-ink hover:text-editorial-crimson transition-colors cursor-pointer">
-              Sajak Senja di Atap Kelas: Kumpulan Puisi Penuh Makna
-            </h3>
-            <p class="text-neutral-600 font-serif text-sm leading-relaxed line-clamp-3 text-justify">
-              Karya puisi syahdu dari anak-anak kelas XII yang sebentar lagi akan meninggalkan bangku sekolah. Menyentuh hati dan sarat akan nostalgia kenangan masa sekolah.
-            </p>
-          </div>
-          <div class="pt-4 border-t border-dashed border-editorial-border mt-4 flex items-center justify-between text-xs font-semibold">
-            <span class="text-neutral-600 font-serif">Fadel Rizky (XII-A)</span>
-            <span class="text-editorial-crimson cursor-pointer hover:underline">Baca Arsip</span>
-          </div>
-        </article>
-
-        <!-- Artikel 6: Opini Siswa (Kesehatan Mental) -->
-        <article class="card-artikel bg-editorial-paper pt-6 md:pt-0 flex flex-col justify-between h-full" data-category="Opini Siswa">
-          <div class="space-y-3">
-            <div class="flex items-center justify-between text-[11px] font-bold uppercase tracking-wider text-neutral-500">
-              <span class="text-amber-800">[ Opini Siswa ]</span>
-              <span>20 Mei 2026</span>
-            </div>
-            <!-- Sketsa ilustrasi yang disederhanakan ala koran -->
-            <div class="relative h-44 bg-stone-100 border border-editorial-border overflow-hidden rounded">
-              <svg class="w-full h-full text-stone-400" viewBox="0 0 300 180" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect width="100%" height="100%" fill="#FCFBF9"/>
-                <circle cx="150" cy="80" r="30" stroke="#1C1917" stroke-width="1.5" fill="none"/>
-                <path d="M135 80 Q150 95 165 80" stroke="#1C1917" stroke-width="1.5"/>
-                <text x="50%" y="155" fill="#78716c" font-family="Lora" font-size="10" text-anchor="middle">Arsip Cetak: Esai Kesehatan Mental</text>
-              </svg>
-            </div>
-            <h3 class="font-serif font-bold text-lg leading-snug text-editorial-ink hover:text-editorial-crimson transition-colors cursor-pointer">
-              Pentingnya Menjaga Kesehatan Mental Remaja di Tengah Tekanan Ujian
-            </h3>
-            <p class="text-neutral-600 font-serif text-sm leading-relaxed line-clamp-3 text-justify">
-              Ujian itu penting, tapi kesehatan mentalmu jauh lebih berharga. Ini dia tips and trik santai menjaga pikiran tetap positif selama pekan-pekan ujian berat.
-            </p>
-          </div>
-          <div class="pt-4 border-t border-dashed border-editorial-border mt-4 flex items-center justify-between text-xs font-semibold">
-            <span class="text-neutral-600 font-serif">Sekar Ayu (XII-B)</span>
-            <span class="text-editorial-crimson cursor-pointer hover:underline">Baca Arsip</span>
-          </div>
-        </article>
-      </div>
-
-      <!-- State Kosong jika Hasil Filter Tidak Ada -->
-      <div id="no-articles-message" class="hidden text-center py-16 bg-white rounded border border-editorial-border shadow-sm">
-        <div class="p-4 bg-stone-50 rounded-full inline-block text-neutral-400 mb-4">
-          <i data-lucide="folder-search" class="w-12 h-12"></i>
-        </div>
-        <h3 class="font-serif text-lg font-bold text-editorial-ink">Halaman Belum Dicetak</h3>
-        <p class="text-neutral-500 font-serif text-sm mt-1">Kategori tulisan ini sedang disunting oleh dewan redaksi.</p>
-      </div>
-
-    </section>
-
-    <!-- ==================== 4. POJOK REDAKSI (CALL TO ACTION / PAPER AD STYLE) ==================== -->
-    <section class="border-t border-b border-double-bottom bg-stone-100 py-16 relative overflow-hidden">
-      <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 relative z-10 space-y-6">
-        <div class="p-3 bg-white border border-editorial-border rounded-full w-14 h-14 mx-auto flex items-center justify-center shadow-sm">
-          <i data-lucide="drafting-compass" class="w-7 h-7 text-editorial-crimson"></i>
-        </div>
-        <h2 class="font-serif text-3xl sm:text-4xl font-extrabold tracking-tight text-editorial-ink">
-          Goreskan Tinta Emas Gagasannmu di <span class="italic font-serif">Serpens Aethera</span>
-        </h2>
-        <p class="text-neutral-600 font-serif text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
-          Punya artikel investigatif, esai tajam, ulasan buku, cerpen berlatar sekolah, atau sajak liris? Jangan biarkan ia hanya mengendap di laci meja kelas. Publikasikan gagasan kritis dan imajinasimu sekarang!
-        </p>
-        <div class="pt-2">
-          <button onclick="bukaModal()" class="bg-editorial-crimson hover:bg-editorial-ink text-white font-serif font-bold py-4 px-8 rounded text-sm tracking-wider uppercase transition-all shadow-md inline-flex items-center space-x-3 hover:scale-[1.02] active:scale-95">
-            <i data-lucide="send-to-back" class="w-5 h-5 text-neutral-100"></i>
-            <span>Setorkan Naskah Anda</span>
-          </button>
         </div>
       </div>
     </section>
 
+    <!-- Ad Style Section -->
+    <section class="border-t border-b border-double-y bg-paper-dark py-16 text-center space-y-6">
+      <div class="p-3 bg-white border border-ink/15 rounded-full w-14 h-14 mx-auto flex items-center justify-center shadow-sm">
+        <i data-lucide="quill" class="w-7 h-7 text-editorial-maroon"></i>
+      </div>
+      <h2 class="font-serif text-3xl sm:text-4xl font-extrabold text-ink">
+        Goreskan Tinta Gagasanmu di <span class="italic">Serpens Aethera</span>
+      </h2>
+      <p class="text-ink/70 font-serif text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
+        Punya artikel investigatif, esai tajam, ulasan buku, cerpen, atau sajak liris? Kirimkan tulisan terbaikmu ke meja redaktur sekolah sekarang!
+      </p>
+      <button onclick="bukaModal()" class="bg-editorial-maroon hover:bg-ink text-white font-serif font-bold py-3 px-6 rounded border border-ink transition-all uppercase text-xs tracking-wider">
+        Setorkan Naskah Anda
+      </button>
+    </section>
   </main>
 
   <!-- ==================== FOOTER ==================== -->
-  <footer class="bg-editorial-ink text-stone-400 py-12 border-t border-editorial-border">
+  <footer class="bg-ink text-stone-400 py-12 border-t border-ink/10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8">
-      
-      <!-- Profil Singkat SMAN 45 -->
       <div class="space-y-4">
-        <div class="flex items-center space-x-3 text-white">
-          <div class="p-2 bg-neutral-800 rounded">
-            <i data-lucide="scroll" class="w-5 h-5 text-editorial-gold"></i>
-          </div>
-          <span class="font-serif font-black text-xl tracking-tight">serpens aethera</span>
-        </div>
-        <p class="text-xs font-serif leading-relaxed text-stone-400">
-          Publikasi mading & portal jurnalistik independen SMAN 45 Jakarta. Media kreasi independen, kolaborasi pemikiran kritis, dan wadah literasi utama siswa.
+        <span class="font-serif font-black text-xl text-white block">serpens aethera</span>
+        <p class="text-xs font-serif leading-relaxed">
+          Publikasi mading & portal jurnalistik independen SMAN 45 Jakarta. Media kreasi independen dan wadah literasi utama siswa.
         </p>
       </div>
-
-      <!-- Link Cepat Kategori -->
       <div class="space-y-4">
-        <h4 class="text-white font-serif font-bold text-sm tracking-widest uppercase border-b border-neutral-800 pb-2">Halaman Surat Kabar</h4>
+        <h4 class="text-white font-serif font-bold text-sm uppercase border-b border-neutral-800 pb-2">Halaman Utama</h4>
         <ul class="space-y-2 text-xs font-serif">
-          <li><button onclick="filterKategori('Berita Utama')" class="hover:text-white transition-colors text-left">Halaman I: Berita Utama</button></li>
-          <li><button onclick="filterKategori('Opini Siswa')" class="hover:text-white transition-colors text-left">Halaman II: Opini & Pemikiran Bebas</button></li>
-          <li><button onclick="filterKategori('Prestasi 45')" class="hover:text-white transition-colors text-left">Halaman III: Prestasi & Event Civitas</button></li>
-          <li><button onclick="filterKategori('Pojok Sastra')" class="hover:text-white transition-colors text-left">Halaman IV: Rubrik Sastra & Seni</button></li>
+          <li><a href="berita.html" class="hover:text-white transition-colors">Halaman I: Berita Utama</a></li>
+          <li><a href="opini.html" class="hover:text-white transition-colors">Halaman II: Opini Siswa</a></li>
+          <li><a href="prestasi.html" class="hover:text-white transition-colors">Halaman III: Prestasi & Event</a></li>
+          <li><a href="sastra.html" class="hover:text-white transition-colors">Halaman IV: Rubrik Sastra</a></li>
         </ul>
       </div>
-
-      <!-- Hubungi Redaksi -->
       <div class="space-y-4">
-        <h4 class="text-white font-serif font-bold text-sm tracking-widest uppercase border-b border-neutral-800 pb-2">Kontak Dewan Redaktur</h4>
-        <div class="space-y-3 text-xs font-serif">
-          <p class="flex items-center"><i data-lucide="navigation" class="w-4 h-4 mr-2.5 text-editorial-gold"></i> Lab Informatika, SMAN 45 Jakarta</p>
-          <p class="flex items-center"><i data-lucide="mail-open" class="w-4 h-4 mr-2.5 text-editorial-gold"></i> redaksi.serpens@sman45.sch.id</p>
-          <p class="flex items-center"><i data-lucide="instagram" class="w-4 h-4 mr-2.5 text-editorial-gold"></i> @serpens.aethera</p>
+        <h4 class="text-white font-serif font-bold text-sm uppercase border-b border-neutral-800 pb-2">Kontak Redaksi</h4>
+        <div class="space-y-2 text-xs font-serif">
+          <p><i data-lucide="map-pin" class="w-3.5 h-3.5 inline mr-1 text-editorial-gold"></i> Lab Informatika, SMAN 45 Jakarta</p>
+          <p><i data-lucide="mail" class="w-3.5 h-3.5 inline mr-1 text-editorial-gold"></i> redaksi.serpens@sman45.sch.id</p>
         </div>
       </div>
-
     </div>
-
-    <!-- Hak Cipta -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-8 border-t border-neutral-800 text-center text-[10px] font-mono uppercase tracking-widest">
-      <p>&copy; 2026 Serpens Aethera & Departemen Rekayasa Web SMAN 45. Segala hak cipta dilindungi undang-undang literasi.</p>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 pt-8 border-t border-neutral-800 text-center text-[10px] font-mono tracking-widest uppercase">
+      &copy; 2026 Serpens Aethera & Departemen Informatika SMAN 45.
     </div>
   </footer>
 
-  <!-- ==================== MODAL FORM KIRIM KARYA (EDITORIAL STYLE) ==================== -->
-  <div id="modal-kirim" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-editorial-ink/75 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300">
-    <div class="bg-editorial-paper border-2 border-editorial-ink rounded w-full max-w-lg shadow-2xl overflow-hidden transform scale-95 transition-transform duration-300 max-h-[90vh] flex flex-col">
-      
-      <!-- Kepala Modal -->
-      <div class="bg-editorial-ink px-6 py-5 text-white flex items-center justify-between border-b-2 border-editorial-gold">
-        <div class="flex items-center space-x-2">
-          <i data-lucide="feather" class="w-5 h-5 text-editorial-gold"></i>
-          <span class="font-serif font-bold text-base sm:text-lg tracking-wide">Penyetoran Manuskrip Siswa</span>
-        </div>
-        <button onclick="tutupModal()" class="p-1.5 rounded hover:bg-neutral-800 transition-all text-stone-400 hover:text-white">
-          <i data-lucide="x" class="w-5 h-5"></i>
-        </button>
+  <!-- MODAL KIRIM KARYA -->
+  <div id="modal-kirim" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-ink/75 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300">
+    <div class="bg-paper-light border-2 border-ink rounded w-full max-w-lg shadow-2xl overflow-hidden transform scale-95 transition-transform duration-300 flex flex-col">
+      <div class="bg-ink px-6 py-4 text-white flex items-center justify-between">
+        <span class="font-serif font-bold text-lg text-editorial-gold">Setorkan Karya Jurnalistik</span>
+        <button onclick="tutupModal()" class="text-stone-400 hover:text-white"><i data-lucide="x" class="w-5 h-5"></i></button>
       </div>
-
-      <!-- Form Isi Modal -->
-      <form id="form-karya" onsubmit="handleKirimForm(event)" class="p-6 space-y-4 overflow-y-auto font-serif">
-        <!-- Input Nama -->
-        <div>
-          <label class="block text-xs font-bold uppercase tracking-wider text-neutral-700 mb-1">Nama Lengkap Koresponden</label>
-          <input type="text" required placeholder="Tuliskan nama lengkap anda..." class="w-full px-4 py-2.5 rounded border border-editorial-border text-sm focus:outline-none focus:ring-1 focus:ring-editorial-crimson focus:border-editorial-crimson bg-white transition-all">
-        </div>
-
-        <!-- Input Kelas & Kategori -->
+      <form id="form-karya" onsubmit="handleKirimForm(event)" class="p-6 space-y-4 font-serif">
+        <input type="text" required placeholder="Nama Lengkap Koresponden" class="w-full px-4 py-2 rounded border border-ink/20 text-sm focus:ring-1 focus:ring-editorial-maroon focus:outline-none">
         <div class="grid grid-cols-2 gap-4">
-          <div>
-            <label class="block text-xs font-bold uppercase tracking-wider text-neutral-700 mb-1">Kelas / Angkatan</label>
-            <input type="text" required placeholder="Contoh: XI-F" class="w-full px-4 py-2.5 rounded border border-editorial-border text-sm focus:outline-none focus:ring-1 focus:ring-editorial-crimson focus:border-editorial-crimson bg-white transition-all">
-          </div>
-          <div>
-            <label class="block text-xs font-bold uppercase tracking-wider text-neutral-700 mb-1">Rubrik Koran</label>
-            <select required class="w-full px-4 py-2.5 rounded border border-editorial-border text-sm focus:outline-none focus:ring-1 focus:ring-editorial-crimson focus:border-editorial-crimson bg-white transition-all">
-              <option value="Berita Utama">Berita Utama</option>
-              <option value="Opini Siswa">Opini Siswa</option>
-              <option value="Prestasi 45">Prestasi 45</option>
-              <option value="Pojok Sastra">Pojok Sastra</option>
-            </select>
-          </div>
+          <input type="text" required placeholder="Kelas" class="w-full px-4 py-2 rounded border border-ink/20 text-sm focus:ring-1 focus:ring-editorial-maroon focus:outline-none">
+          <select required class="w-full px-4 py-2 rounded border border-ink/20 text-sm focus:ring-1 focus:ring-editorial-maroon focus:outline-none bg-white">
+            <option>Berita Utama</option>
+            <option>Opini Siswa</option>
+            <option>Prestasi 45</option>
+            <option>Pojok Sastra</option>
+          </select>
         </div>
-
-        <!-- Input Judul -->
-        <div>
-          <label class="block text-xs font-bold uppercase tracking-wider text-neutral-700 mb-1">Judul Karya / Gagasan</label>
-          <input type="text" required placeholder="Berikan judul editorial yang tajam..." class="w-full px-4 py-2.5 rounded border border-editorial-border text-sm focus:outline-none focus:ring-1 focus:ring-editorial-crimson focus:border-editorial-crimson bg-white transition-all">
-        </div>
-
-        <!-- Input Naskah -->
-        <div>
-          <label class="block text-xs font-bold uppercase tracking-wider text-neutral-700 mb-1">Goresan Naskah Utuh</label>
-          <textarea required rows="4" placeholder="Ketik draf tulisan, cerpen, atau untaian puisi anda di sini..." class="w-full px-4 py-2.5 rounded border border-editorial-border text-sm focus:outline-none focus:ring-1 focus:ring-editorial-crimson focus:border-editorial-crimson bg-white transition-all resize-none"></textarea>
-        </div>
-
-        <!-- Feedback Box -->
-        <div id="feedback-box" class="hidden p-3 rounded text-xs font-semibold text-center transition-all"></div>
-
-        <!-- Tombol Kirim Form -->
-        <div class="flex space-x-3 pt-2">
-          <button type="button" onclick="tutupModal()" class="w-1/3 py-3 border border-editorial-border text-neutral-600 text-sm font-semibold rounded hover:bg-stone-50 transition-all uppercase tracking-wider">
-            Batal
-          </button>
-          <button type="submit" class="w-2/3 py-3 bg-editorial-crimson hover:bg-editorial-ink text-white text-sm font-semibold rounded transition-all flex items-center justify-center space-x-2 uppercase tracking-wider">
-            <i data-lucide="check-square" class="w-4 h-4"></i>
-            <span>Ajukan ke Redaksi</span>
-          </button>
+        <input type="text" required placeholder="Judul Karya" class="w-full px-4 py-2 rounded border border-ink/20 text-sm focus:ring-1 focus:ring-editorial-maroon focus:outline-none">
+        <textarea required rows="4" placeholder="Tulis manuskrip di sini..." class="w-full px-4 py-2 rounded border border-ink/20 text-sm focus:ring-1 focus:ring-editorial-maroon focus:outline-none resize-none"></textarea>
+        <div id="feedback-box" class="hidden p-3 rounded text-xs font-semibold text-center"></div>
+        <div class="flex space-x-3">
+          <button type="button" onclick="tutupModal()" class="w-1/3 py-2 border border-ink/20 rounded text-sm font-semibold uppercase">Batal</button>
+          <button type="submit" class="w-2/3 py-2 bg-editorial-maroon text-white rounded text-sm font-semibold uppercase">Kirim Karya</button>
         </div>
       </form>
     </div>
   </div>
 
-  <!-- ==================== POP-UP POPUP BACA BERITA UTAMA (DETAIL MODAL) ==================== -->
-  <div id="modal-detail" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-editorial-ink/75 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300">
-    <div class="bg-editorial-paper border-2 border-editorial-ink rounded w-full max-w-2xl shadow-2xl overflow-hidden transform scale-95 transition-transform duration-300 max-h-[85vh] flex flex-col">
-      <div class="bg-stone-100 p-4 flex justify-between items-center border-b border-editorial-border">
-        <span class="text-xs font-bold text-editorial-crimson uppercase tracking-wider font-mono">Arsip Digital Resmi</span>
-        <button onclick="tutupDetailModal()" class="text-editorial-ink hover:text-editorial-crimson p-1.5 rounded hover:bg-stone-200 transition-all">
-          <i data-lucide="x" class="w-5 h-5"></i>
-        </button>
+  <!-- MODAL BACA DETAIL -->
+  <div id="modal-detail" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-ink/75 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300">
+    <div class="bg-paper-light border-2 border-ink rounded w-full max-w-2xl shadow-2xl overflow-hidden transform scale-95 transition-transform duration-300 flex flex-col max-h-[85vh]">
+      <div class="bg-stone-100 p-4 flex justify-between items-center border-b border-ink/10">
+        <span class="text-xs font-bold text-editorial-maroon uppercase tracking-wider font-mono">Arsip Serpens Aethera</span>
+        <button onclick="tutupDetailModal()" class="text-ink hover:text-editorial-maroon"><i data-lucide="x" class="w-5 h-5"></i></button>
       </div>
       <div class="p-6 overflow-y-auto space-y-4 font-serif">
-        <h2 class="text-2xl font-extrabold text-editorial-ink leading-tight" id="detail-judul">Judul Artikel</h2>
-        <div class="flex items-center space-x-4 text-xs font-semibold uppercase tracking-wider text-neutral-500">
-          <span id="detail-kategori" class="border border-editorial-crimson text-editorial-crimson px-2.5 py-0.5 rounded font-bold">Kategori</span>
-          <span id="detail-tanggal" class="flex items-center"><i data-lucide="clock" class="w-3.5 h-3.5 mr-1"></i> Tanggal</span>
-          <span id="detail-penulis" class="flex items-center"><i data-lucide="pencil" class="w-3.5 h-3.5 mr-1"></i> Penulis</span>
+        <h2 class="text-2xl font-extrabold text-ink" id="detail-judul">Judul</h2>
+        <div class="flex space-x-4 text-xs font-semibold uppercase text-neutral-500 pb-2 border-b border-ink/10">
+          <span id="detail-kategori" class="text-editorial-maroon font-bold">Kategori</span>
+          <span id="detail-tanggal">Tanggal</span>
+          <span id="detail-penulis">Penulis</span>
         </div>
-        <hr class="border-double-y py-0.5 border-editorial-border">
-        <div class="text-neutral-700 text-sm sm:text-base space-y-4 leading-relaxed text-justify" id="detail-isi">
-          <!-- Diisi via JS -->
-        </div>
+        <div class="text-ink/80 text-sm sm:text-base space-y-4 leading-relaxed text-justify" id="detail-isi"></div>
       </div>
     </div>
   </div>
 
-  <!-- ==================== LOGIKA JAVASCRIPT UTAMA ==================== -->
   <script>
-    // Inisialisasi ikon Lucide di seluruh halaman
     lucide.createIcons();
-
-    // 1. Menu Navigasi Mobile (Burger Menu)
     function toggleMobileMenu() {
-      const mobileMenu = document.getElementById('mobile-menu');
-      const isHidden = mobileMenu.classList.contains('hidden');
-      const menuIcon = document.getElementById('menu-icon');
-
-      if (isHidden) {
-        mobileMenu.classList.remove('hidden');
-        menuIcon.setAttribute('data-lucide', 'x');
-      } else {
-        mobileMenu.classList.add('hidden');
-        menuIcon.setAttribute('data-lucide', 'menu');
-      }
-      lucide.createIcons(); // Memperbarui ikon setelah perubahan atribut
+      const menu = document.getElementById('mobile-menu');
+      menu.classList.toggle('hidden');
     }
-
-    // 2. Fungsi Filter Kategori Khas Redaksi Koran
-    function filterKategori(kategori) {
-      // Update heading penanda halaman
-      const namaFilter = document.getElementById('nama-filter');
-      namaFilter.innerText = kategori === 'Semua' ? 'Semua Halaman' : kategori;
-
-      // Update gaya visual tombol navigasi desktop
-      const desktopButtons = document.querySelectorAll('.category-btn');
-      desktopButtons.forEach(btn => {
-        if (btn.innerText.includes(kategori) || (kategori === 'Semua' && btn.innerText.includes('Semua'))) {
-          btn.classList.add('text-editorial-crimson', 'border-b-2', 'border-editorial-crimson', 'active');
-          btn.classList.remove('text-neutral-600');
-        } else {
-          btn.classList.remove('text-editorial-crimson', 'border-b-2', 'border-editorial-crimson', 'active');
-          btn.classList.add('text-neutral-600');
-        }
-      });
-
-      // Menyembunyikan / menampilkan kartu artikel koran sesuai kategori pilihan
-      const articles = document.querySelectorAll('.card-artikel');
-      let adaArtikel = false;
-
-      articles.forEach(article => {
-        const artCategory = article.getAttribute('data-category');
-        if (kategori === 'Semua' || artCategory === kategori) {
-          article.classList.remove('hidden');
-          adaArtikel = true;
-        } else {
-          article.classList.add('hidden');
-        }
-      });
-
-      // Jika halaman filter kosong, tampilkan state kosong estetik
-      const noArticlesMsg = document.getElementById('no-articles-message');
-      if (adaArtikel) {
-        noArticlesMsg.classList.add('hidden');
-      } else {
-        noArticlesMsg.classList.remove('hidden');
-      }
-    }
-
-    // 3. Kontrol Modal Penyetoran Karya
     function bukaModal() {
       const modal = document.getElementById('modal-kirim');
       modal.classList.remove('hidden');
-      setTimeout(() => {
-        modal.classList.remove('opacity-0');
-        modal.firstElementChild.classList.remove('scale-95');
-        modal.firstElementChild.classList.add('scale-100');
-      }, 10);
+      setTimeout(() => modal.classList.remove('opacity-0'), 10);
     }
-
     function tutupModal() {
       const modal = document.getElementById('modal-kirim');
       modal.classList.add('opacity-0');
-      modal.firstElementChild.classList.remove('scale-100');
-      modal.firstElementChild.classList.add('scale-95');
-      setTimeout(() => {
-        modal.classList.add('hidden');
-        document.getElementById('form-karya').reset();
-        const feedbackBox = document.getElementById('feedback-box');
-        feedbackBox.classList.add('hidden');
-      }, 300);
+      setTimeout(() => modal.classList.add('hidden'), 300);
     }
-
-    // 4. Simulasi Pengiriman Naskah ke Dewan Redaktur
-    function handleKirimForm(event) {
-      event.preventDefault();
-
-      const feedbackBox = document.getElementById('feedback-box');
-      feedbackBox.classList.remove('hidden', 'bg-stone-200', 'text-stone-800');
-
-      // Animasi loading pengiriman manuskrip
-      feedbackBox.className = "p-3 rounded text-xs font-semibold text-center bg-stone-100 text-stone-700 border border-stone-300";
-      feedbackBox.innerText = "Mengonfirmasi tanda tangan digital & naskah...";
-
+    function handleKirimForm(e) {
+      e.preventDefault();
+      const fb = document.getElementById('feedback-box');
+      fb.classList.remove('hidden');
+      fb.className = "p-3 rounded text-xs font-semibold text-center bg-stone-100 text-stone-700 border border-stone-300";
+      fb.innerText = "Mengirimkan manuskrip...";
       setTimeout(() => {
-        // Tanda sukses gaya pers rilis
-        feedbackBox.className = "p-3 rounded text-xs font-semibold text-center bg-stone-900 text-stone-100 border border-editorial-gold";
-        feedbackBox.innerHTML = "<span class='block font-bold text-editorial-gold'>Dokumen Diterima! ✍️</span> Redaktur Serpens Aethera akan mengulas karya anda di sidang meja redaksi.";
-
-        setTimeout(() => {
-          tutupModal();
-        }, 3000);
-      }, 1500);
+        fb.className = "p-3 rounded text-xs font-semibold text-center bg-stone-900 text-stone-100 border border-editorial-gold";
+        fb.innerHTML = "Sukses dikirim! 🎉";
+        setTimeout(() => tutupModal(), 1500);
+      }, 1000);
     }
-
-    // 5. Pembacaan Lembar Berita Utama (Headline Modal)
-    function bukaBeritaHeadline() {
-      const detailModal = document.getElementById('modal-detail');
-      
-      document.getElementById('detail-judul').innerText = "Siswa SMAN 45 Boyong Medali Emas Olimpiade Sains Nasional 2026!";
-      document.getElementById('detail-kategori').innerText = "Prestasi 45";
-      document.getElementById('detail-tanggal').innerHTML = "<i data-lucide='calendar' class='w-3.5 h-3.5 mr-1 inline'></i> 2 Juni 2026";
-      document.getElementById('detail-penulis').innerHTML = "<i data-lucide='user' class='w-3.5 h-3.5 mr-1 inline'></i> Tim Redaksi Serpens";
-      
-      document.getElementById('detail-isi').innerHTML = `
-        <p class="dropcap font-serif leading-relaxed text-justify text-neutral-800">
-          <strong>JAKARTA, SERPENS AETHERA</strong> - Prestasi menakjubkan kembali diukir oleh civitas akademika SMAN 45 Jakarta di tingkat nasional. Melalui serangkaian kompetisi ketat dan melelahkan, tim delegasi riset sains sekolah berhasil memulangkan Piala Emas kehormatan dalam ajang bergengsi Olimpiade Sains Nasional (OSN) 2026.
-        </p>
-        <p class="font-serif leading-relaxed text-justify text-neutral-700">
-          Ibu Citra Amalia, selaku pembina utama tim sains, mengungkapkan rasa syukur yang luar biasa. Beliau menyebut bahwa inovasi yang dibawa oleh siswa berupa purwarupa 'Penyaring Mikroplastik Sungai Berbasis Serat Alami Lokal' merupakan salah satu terobosan orisinal yang paling dipuji oleh para profesor penguji di Jakarta Convention Center.
-        </p>
-        <p class="font-serif leading-relaxed text-justify text-neutral-700">
-          Dengan kemenangan ini, redaksi Serpens Aethera mengajak seluruh siswa untuk tidak ragu mengejar riset ilmiah dan terus menulis esai-esai sains yang berguna bagi masyarakat. SMAN 45 telah membuktikan bahwa keterbatasan fasilitas di sekolah tidak pernah membatasi luasnya langit gagasan kita.
-        </p>
-      `;
-
-      detailModal.classList.remove('hidden');
-      setTimeout(() => {
-        detailModal.classList.remove('opacity-0');
-        detailModal.firstElementChild.classList.remove('scale-95');
-        detailModal.firstElementChild.classList.add('scale-100');
-      }, 10);
-      lucide.createIcons();
+    function bukaBerita(judul, kategori, tanggal, penulis, isi) {
+      const m = document.getElementById('modal-detail');
+      document.getElementById('detail-judul').innerText = judul;
+      document.getElementById('detail-kategori').innerText = kategori;
+      document.getElementById('detail-tanggal').innerText = tanggal;
+      document.getElementById('detail-penulis').innerText = penulis;
+      document.getElementById('detail-isi').innerHTML = `<p class="dropcap">${isi}</p><p class="mt-4">Terus berkarya dan menginspirasi lewat gagasan literasi bersama SMAN 45 Jakarta!</p>`;
+      m.classList.remove('hidden');
+      setTimeout(() => m.classList.remove('opacity-0'), 10);
     }
-
     function tutupDetailModal() {
-      const detailModal = document.getElementById('modal-detail');
-      detailModal.classList.add('opacity-0');
-      detailModal.firstElementChild.classList.remove('scale-100');
-      detailModal.firstElementChild.classList.add('scale-95');
-      setTimeout(() => {
-        detailModal.classList.add('hidden');
-      }, 300);
+      const m = document.getElementById('modal-detail');
+      m.classList.add('opacity-0');
+      setTimeout(() => m.classList.add('hidden'), 300);
     }
   </script>
 </body>
